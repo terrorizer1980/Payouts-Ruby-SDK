@@ -150,7 +150,7 @@ You can start off by trying out [Payouts Samples](samples/run_all.rb)
 
 To try out different samples head to [this link](samples)
 
-Note: Update the `paypal_client.rb` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+Note: Update the `paypal_client.rb` with your sandbox client credentials or pass your client credentials as environment variable while executing the samples.
 
 
 ## License
