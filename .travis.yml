@@ -5,7 +5,7 @@ rvm:
   - "2.0.0"
   - "2.2.5"
   - "2.3.1"
-script: "bundle exec rspec"
+script: "PAYPAL_CLIENT_ID=AdV4d6nLHabWLyemrw4BKdO9LjcnioNIOgoz7vD611ObbDUL0kJQfzrdhXEBwnH8QmV-7XZjvjRWn0kg PAYPAL_CLIENT_SECRET=EPKoPC_haZMTq5uM9WXuzoxUVdgzVqHyD5avCyVC1NCIUJeVaNNUZMnzduYIqrdw-carG9LBAizFGMyK bundle exec rspec"
 sudo: false
 notifications:
   recipients:
