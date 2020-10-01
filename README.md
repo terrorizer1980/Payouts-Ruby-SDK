@@ -2,16 +2,36 @@
 
 ![PayPal Developer](homepage.jpg)
 
-__Welcome to PayPal Ruby SDK__. This repository contains PayPal's NodeJS SDK and samples for [v1/payments/payouts](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/) APIs.
+__Welcome to PayPal Ruby SDK__. This repository contains PayPal's Ruby SDK and samples for [v1/payments/payouts](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/) APIs.
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Payouts APIs which includes [Payouts](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/).
 
-Please refer to the [PayPal Payouts Integration Guide](https://developer.paypal.com/docs/payouts/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/payouts/reference/setup-sdk) for additional information about setting up the SDK's.
+Please refer to the [PayPal Payouts Integration Guide](https://developer.paypal.com/docs/payouts/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/payouts/reference/setup-sdk) for additional information about setting up the SDK.
 
 ## Prerequisites
 
 - Ruby 2.0.0 or above
 - Bundler
+
+## Installations
+
+Add this line to your application's Gemfile:
+
+```
+gem 'paypal-payouts-sdk'
+```
+
+And then execute:
+
+```
+$ bundle
+```
+
+Or install it yourself as:
+
+```
+$ gem install paypal-payouts-sdk
+```
 
 ## Usage
 ### Binaries
@@ -43,7 +63,7 @@ This code creates a Payout and prints the batch_id for the Payout.
 ```ruby
 
 # Construct a request object and set desired parameters
-# Here, PayoutsPostRequest::new creates a POST request to /v1/payments/payouts
+# Here, PayoutsPostRequest.new creates a POST request to /v1/payments/payouts
 body = {
   sender_batch_header: {
       recipient_type: 'EMAIL',
@@ -53,7 +73,7 @@ body = {
       email_subject: 'This is a test transaction from SDK'
   },
   items: [{
-              note: 'Your 5$ Payout!',
+              note: 'Your $1 Payout!',
               amount: {
                   currency: 'USD',
                   value: '1.00'
@@ -61,7 +81,7 @@ body = {
               receiver: 'payout-sdk-1@paypal.com',
               sender_item_id: 'Test_txn_1'
           }, {
-              note: 'Your 5$ Payout!',
+              note: 'Your $1 Payout!',
               amount: {
                   currency: 'USD',
                   value: '1.00'
@@ -69,7 +89,7 @@ body = {
               receiver: 'payout-sdk-2@paypal.com',
               sender_item_id: 'Test_txn_2'
           }, {
-              note: 'Your 5$ Payout!',
+              note: 'Your $1 Payout!',
               amount: {
                   currency: 'USD',
                   value: '1.00'
@@ -77,7 +97,7 @@ body = {
               receiver: 'payout-sdk-3@paypal.com',
               sender_item_id: 'Test_txn_3'
           }, {
-              note: 'Your 5$ Payout!',
+              note: 'Your $1 Payout!',
               amount: {
                   currency: 'USD',
                   value: '1.00'
@@ -85,7 +105,7 @@ body = {
               receiver: 'payout-sdk-4@paypal.com',
               sender_item_id: 'Test_txn_4'
           }, {
-              note: 'Your 5$ Payout!',
+              note: 'Your $1 Payout!',
               amount: {
                   currency: 'USD',
                   value: '1.00'
@@ -94,7 +114,7 @@ body = {
               sender_item_id: 'Test_txn_5'
           }]
 }
-request = PaypalPayoutsSdk::Payouts::PayoutsPostRequest::new
+request = PaypalPayoutsSdk::Payouts::PayoutsPostRequest.new
 request.request_body(body) 
 
 begin
@@ -116,8 +136,8 @@ Pass the batch_id from the previous sample to retrieve Payouts batch details
 
 #### Code:
 ```ruby
-# Here, PayoutsGetRequest::new() creates a GET request to /v1/payments/payouts/<batch-id>
-request = PaypalPayoutsSdk::Payouts::PayoutsGetRequest::new("PAYOUT-BATCH-ID")
+# Here, PayoutsGetRequest.new creates a GET request to /v1/payments/payouts/<batch-id>
+request = PaypalPayoutsSdk::Payouts::PayoutsGetRequest.new("PAYOUT-BATCH-ID")
 request.page(1)
 request.page_size(10)
 request.total_required(true)
