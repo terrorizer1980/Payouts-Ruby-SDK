@@ -19,7 +19,7 @@ module Samples
               email_subject: 'This is a test transaction from SDK'
           },
           items: [{
-                      note: 'Your 5$ Payout!',
+                      note: 'Your 1$ Payout!',
                       amount: {
                           currency: 'USD',
                           value: '1.00'
@@ -27,7 +27,7 @@ module Samples
                       receiver: 'payout-sdk-1@paypal.com',
                       sender_item_id: 'Test_txn_1'
                   }, {
-                      note: 'Your 5$ Payout!',
+                      note: 'Your 1$ Payout!',
                       amount: {
                           currency: 'USD',
                           value: '1.00'
@@ -35,7 +35,7 @@ module Samples
                       receiver: 'payout-sdk-2@paypal.com',
                       sender_item_id: 'Test_txn_2'
                   }, {
-                      note: 'Your 5$ Payout!',
+                      note: 'Your 1$ Payout!',
                       amount: {
                           currency: 'USD',
                           value: '1.00'
@@ -43,7 +43,7 @@ module Samples
                       receiver: 'payout-sdk-3@paypal.com',
                       sender_item_id: 'Test_txn_3'
                   }, {
-                      note: 'Your 5$ Payout!',
+                      note: 'Your 1$ Payout!',
                       amount: {
                           currency: 'USD',
                           value: '1.00'
@@ -51,7 +51,7 @@ module Samples
                       receiver: 'payout-sdk-4@paypal.com',
                       sender_item_id: 'Test_txn_4'
                   }, {
-                      note: 'Your 5$ Payout!',
+                      note: 'Your 1$ Payout!',
                       amount: {
                           currency: 'USD',
                           value: '1.00'
