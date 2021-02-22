@@ -131,6 +131,86 @@ rescue PayPalHttp::HttpError => ioe
 end
 ```
 
+### Handle API Failure
+This will create a Payout with validation failure to showcase how to parse the failed response entity. Refer samples for more scenarios
+```ruby
+
+# Construct a request object and set desired parameters
+# Here, PayoutsPostRequest.new creates a POST request to /v1/payments/payouts
+body = {
+  sender_batch_header: {
+      recipient_type: 'EMAIL',
+      email_message: 'SDK payouts test txn',
+      note: 'Enjoy your Payout!!',
+      sender_batch_id: 'Test_SDK_1',
+      email_subject: 'This is a test transaction from SDK'
+  },
+  items: [{
+              note: 'Your $1 Payout!',
+              amount: {
+                  currency: 'USD',
+                  value: '1.0.0'
+              },
+              receiver: 'payout-sdk-1@paypal.com',
+              sender_item_id: 'Test_txn_1'
+          }, {
+              note: 'Your $1 Payout!',
+              amount: {
+                  currency: 'USD',
+                  value: '1.0.0'
+              },
+              receiver: 'payout-sdk-2@paypal.com',
+              sender_item_id: 'Test_txn_2'
+          }, {
+              note: 'Your $1 Payout!',
+              amount: {
+                  currency: 'USD',
+                  value: '1.0.0'
+              },
+              receiver: 'payout-sdk-3@paypal.com',
+              sender_item_id: 'Test_txn_3'
+          }, {
+              note: 'Your $1 Payout!',
+              amount: {
+                  currency: 'USD',
+                  value: '1.0.0'
+              },
+              receiver: 'payout-sdk-4@paypal.com',
+              sender_item_id: 'Test_txn_4'
+          }, {
+              note: 'Your $1 Payout!',
+              amount: {
+                  currency: 'USD',
+                  value: '1.0.0'
+              },
+              receiver: 'payout-sdk-5@paypal.com',
+              sender_item_id: 'Test_txn_5'
+          }]
+}
+request = PaypalPayoutsSdk::Payouts::PayoutsPostRequest.new
+request.request_body(body) 
+
+begin
+    # Call API with your client and get a response for your call
+    client.execute(request)
+
+rescue PayPalHttp::HttpError => ioe
+    # Something went wrong server-side
+    puts "Status Code: #{ioe.status_code}"
+    puts "Response: #{ioe.result}"
+    puts "Name: #{ioe.result.name}"
+    puts "Message: #{ioe.result.message}"
+    puts "Information link: #{ioe.result.information_link}"
+    puts "Debug Id: #{ioe.result.debug_id}"
+    puts "Details: "
+    ioe.result.details.each { |detail|
+      puts "Error Location: #{detail["location"]}"
+      puts "Error Field: #{detail["field"]}"
+      puts "Error issue: #{detail["issue"]}"
+    }
+end
+```
+
 ### Retrieve a Payout Batch
 Pass the batch_id from the previous sample to retrieve Payouts batch details
 

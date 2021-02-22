@@ -33,6 +33,10 @@ if create_resp.status_code == 201
           cancel_resp = Samples::CancelPayoutItem.new().cancel_payout_item(item_id, true)
           if cancel_resp.status_code == 200
             puts "Successfully cancelled unclaimed Payouts item with id: #{item_id}"
+
+            # Run cancel failure scenario
+            puts "Simulate failure on cancelling an already cancelled Payout item with id: #{item_id}"
+            Samples::CancelPayoutItem.new().cancel_payout_item(item_id, true)
           else
             puts "Failed to cancel unclaimed Payouts item with id: #{item_id}"
           end
@@ -49,3 +53,11 @@ if create_resp.status_code == 201
 else
   puts "Failed to crate Payouts batch"
 end
+
+# Execute all failure cases
+puts "Create a payout with validation failure"
+Samples::CreatePayouts::new().create_payouts_failure(true)
+puts "Retrieving an invalid payout"
+Samples::GetPayouts::new().get_payouts("DUMMY", true)
+puts "Retrieving an invalid payout item"
+Samples::GetPayoutItem::new().get_payout_item("DUMMY", true)
